@@ -1,0 +1,1117 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "payable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "InspectorNotAssigned",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidTenderStage",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotRegisteredBidder",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OnlyAdmin",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OnlyInspector",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "SubmissionDeadlineNotReached",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "SubmissionDeadlinePassed",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TenderDoesNotExist",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "currentAdmin",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "AdminTransferInitiated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldAdmin",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "AdminTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "BidRevealed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "bidder",
+						"type": "address"
+					}
+				],
+				"name": "BidSubmitted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "bidder",
+						"type": "address"
+					}
+				],
+				"name": "BidderRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "inspector",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "inspectionReportHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "DeliveryAccepted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "inspector",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "reason",
+						"type": "string"
+					}
+				],
+				"name": "DeliveryRejected",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "deliveryEvidenceHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "DeliverySubmitted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "inspector",
+						"type": "address"
+					}
+				],
+				"name": "InspectorAssigned",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "PaymentReleased",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [],
+				"name": "RevealPhaseOpened",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TenderAwarded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "tenderNumber",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "submissionDeadline",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "contractAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "TenderCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "lowestBid",
+						"type": "uint256"
+					}
+				],
+				"name": "TenderEvaluated",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "acceptAdminRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_inspectionReportHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "acceptDelivery",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "awardTender",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "bidderList",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "bids",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "sealedBidHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bool",
+						"name": "submitted",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "revealed",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "valid",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_tenderNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_title",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_description",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_year",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_month",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_day",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_hour",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_minute",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "_utcOffsetHours",
+						"type": "int256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_contractAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_qualificationNote",
+						"type": "string"
+					}
+				],
+				"name": "createTenderWithLocalTime",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "deliveryEvidenceHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "evaluateTender",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fundContract",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_bidder",
+						"type": "address"
+					}
+				],
+				"name": "getBidDetails",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "submitted",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "revealed",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "valid",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBidderCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getContractBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_secret",
+						"type": "string"
+					}
+				],
+				"name": "getPackedHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTenderSummary",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "tenderNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "submissionDeadline",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "contractAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "qualificationNote",
+						"type": "string"
+					},
+					{
+						"internalType": "enum KenyaProcurementTransparency.TenderStatus",
+						"name": "currentStatus",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "currentWinner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "winningBid",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "inspectionReportHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "inspector",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lowestBid",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "openRevealPhase",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paymentReleased",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pendingAdmin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_bidder",
+						"type": "address"
+					}
+				],
+				"name": "registerBidder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "registeredBidders",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_reason",
+						"type": "string"
+					}
+				],
+				"name": "rejectDelivery",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rejectionReason",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "releasePayment",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_secret",
+						"type": "string"
+					}
+				],
+				"name": "revealBid",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_inspector",
+						"type": "address"
+					}
+				],
+				"name": "setInspector",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "status",
+				"outputs": [
+					{
+						"internalType": "enum KenyaProcurementTransparency.TenderStatus",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_deliveryEvidenceHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "submitDeliveryEvidence",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_sealedBidHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "submitSealedBid",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "tender",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "tenderNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "submissionDeadline",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "contractAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "qualificationNote",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "exists",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "transferAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "winner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "OpenAI",
+			"details": "This contract demonstrates sealed bidding, role-based access control, state-driven workflow enforcement, and auditability for academic use.",
+			"kind": "dev",
+			"methods": {
+				"acceptAdminRole()": {
+					"details": "Must be called by the pending admin address."
+				},
+				"acceptDelivery(bytes32)": {
+					"params": {
+						"_inspectionReportHash": "Hash of the inspection or acceptance report."
+					}
+				},
+				"createTenderWithLocalTime(string,string,string,uint256,uint256,uint256,uint256,uint256,int256,uint256,string)": {
+					"details": "Improves usability by converting human-readable local time into Unix time internally.",
+					"params": {
+						"_contractAmount": "Payment amount to be released after acceptance.",
+						"_day": "Calendar day.",
+						"_description": "Tender description.",
+						"_hour": "Hour in 24-hour format.",
+						"_minute": "Minute.",
+						"_month": "Calendar month (1-12).",
+						"_qualificationNote": "Eligibility or qualification requirement.",
+						"_tenderNumber": "Official tender reference number.",
+						"_title": "Tender title.",
+						"_utcOffsetHours": "UTC offset in hours (e.g. 3 for EAT).",
+						"_year": "Calendar year."
+					}
+				},
+				"evaluateTender()": {
+					"details": "Simplified prototype logic: lowest responsive revealed bid wins."
+				},
+				"getBidDetails(address)": {
+					"params": {
+						"_bidder": "Address of the bidder."
+					},
+					"returns": {
+						"amount": "The revealed amount.",
+						"revealed": "Whether the bid was revealed.",
+						"submitted": "Whether a bid was submitted.",
+						"valid": "Whether the bid is considered valid."
+					}
+				},
+				"getBidderCount()": {
+					"returns": {
+						"_0": "Total bidder count."
+					}
+				},
+				"getContractBalance()": {
+					"returns": {
+						"_0": "The contract balance in wei."
+					}
+				},
+				"getPackedHash(uint256,string)": {
+					"details": "This helper is intended to simplify sealed-bid preparation without a separate helper contract.",
+					"params": {
+						"_amount": "Bid amount.",
+						"_secret": "Secret phrase used for bid commitment."
+					},
+					"returns": {
+						"_0": "The keccak256 packed hash of amount and secret."
+					}
+				},
+				"getTenderSummary()": {
+					"returns": {
+						"contractAmount": "Payment amount for the contract.",
+						"currentStatus": "Current lifecycle stage.",
+						"currentWinner": "Address of the current winner.",
+						"description": "Tender description.",
+						"qualificationNote": "Supplier qualification requirement.",
+						"submissionDeadline": "Tender submission deadline.",
+						"tenderNumber": "Tender reference number.",
+						"title": "Tender title.",
+						"winningBid": "Lowest revealed valid bid."
+					}
+				},
+				"registerBidder(address)": {
+					"params": {
+						"_bidder": "Address of the supplier allowed to participate."
+					}
+				},
+				"rejectDelivery(string)": {
+					"params": {
+						"_reason": "Textual reason for rejection."
+					}
+				},
+				"revealBid(uint256,string)": {
+					"params": {
+						"_amount": "Bid amount.",
+						"_secret": "Secret string originally used to generate the sealed hash."
+					}
+				},
+				"setInspector(address)": {
+					"details": "Inspector can be changed only before final inspection/payment stages.",
+					"params": {
+						"_inspector": "Address of the inspection authority."
+					}
+				},
+				"submitDeliveryEvidence(bytes32)": {
+					"params": {
+						"_deliveryEvidenceHash": "Hash of the delivery note, invoice, or delivery proof."
+					}
+				},
+				"submitSealedBid(bytes32)": {
+					"details": "Bid must be submitted before the deadline and only once.",
+					"params": {
+						"_sealedBidHash": "keccak256 hash of bid amount and secret."
+					}
+				},
+				"transferAdmin(address)": {
+					"params": {
+						"_newAdmin": "Address proposed as the next admin."
+					}
+				}
+			},
+			"title": "KenyaProcurementTransparency",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"acceptAdminRole()": {
+					"notice": "Accepts the pending admin role."
+				},
+				"acceptDelivery(bytes32)": {
+					"notice": "Accepts delivery after successful inspection."
+				},
+				"awardTender()": {
+					"notice": "Finalizes the winning bidder after evaluation."
+				},
+				"constructor": {
+					"notice": "Sets the deployer as the initial admin."
+				},
+				"createTenderWithLocalTime(string,string,string,uint256,uint256,uint256,uint256,uint256,int256,uint256,string)": {
+					"notice": "Creates the tender using local date, time, and UTC offset."
+				},
+				"evaluateTender()": {
+					"notice": "Evaluates all valid revealed bids and selects the lowest bid."
+				},
+				"fundContract()": {
+					"notice": "Allows the admin to fund the contract with ETH for later payment."
+				},
+				"getBidDetails(address)": {
+					"notice": "Returns bid details for a given bidder address."
+				},
+				"getBidderCount()": {
+					"notice": "Returns the number of registered bidders."
+				},
+				"getContractBalance()": {
+					"notice": "Returns the ETH balance currently held by the contract."
+				},
+				"getPackedHash(uint256,string)": {
+					"notice": "Returns the packed hash of a bid amount and secret."
+				},
+				"getTenderSummary()": {
+					"notice": "Returns a summary of the current tender and award state."
+				},
+				"openRevealPhase()": {
+					"notice": "Opens the reveal phase after the submission deadline."
+				},
+				"registerBidder(address)": {
+					"notice": "Registers a bidder address on the on-chain whitelist."
+				},
+				"rejectDelivery(string)": {
+					"notice": "Rejects delivery and records the reason."
+				},
+				"releasePayment()": {
+					"notice": "Releases payment to the winning bidder after inspection acceptance."
+				},
+				"revealBid(uint256,string)": {
+					"notice": "Reveals a previously committed bid."
+				},
+				"setInspector(address)": {
+					"notice": "Assigns or updates the inspector address."
+				},
+				"submitDeliveryEvidence(bytes32)": {
+					"notice": "Allows only the winner to submit delivery evidence."
+				},
+				"submitSealedBid(bytes32)": {
+					"notice": "Allows a registered bidder to submit a sealed bid hash."
+				},
+				"transferAdmin(address)": {
+					"notice": "Initiates transfer of admin authority to a new address."
+				}
+			},
+			"notice": "A blockchain-based public procurement prototype for transparent tendering, delivery verification, inspection, and conditional payment.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".git/MyContracts/KenyaProcurementTransparency.sol": "KenyaProcurementTransparency"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		".git/MyContracts/KenyaProcurementTransparency.sol": {
+			"keccak256": "0x6efdedfb40431593af60b3d6635cd966bba5e068c4a577feefa8a396d8396d3e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://941840197c205766350025bb95c0136847b6536452fbc8e4843dbe00915aac3e",
+				"dweb:/ipfs/QmPUYCScaeeKUW3dmxoEWxYm5m7SS5WArVmvQ6PcNaTDVS"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,58 @@
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity ^0.8.20;
+
+/**
+ * @title Storage
+ * @author Student
+ * @notice A simple smart contract that stores and retrieves a number
+ */
+contract Storage {
+    uint256 private number;
+    address public owner;
+
+    event NumberStored(uint256 newNumber);
+    event OwnershipTransferred(address indexed oldOwner, address indexed newOwner);
+
+    error NotOwner();
+    error InvalidOwnerAddress();
+
+    modifier onlyOwner() {
+        if (msg.sender != owner) revert NotOwner();
+        _;
+    }
+
+    // solhint-disable-next-line func-visibility
+    constructor() {
+        owner = msg.sender;
+    }
+
+    /**
+     * @notice Stores a new number in the contract
+     * @param num The number to store
+     */
+    function store(uint256 num) external onlyOwner {
+        number = num;
+        emit NumberStored(num);
+    }
+
+    /**
+     * @notice Retrieves the stored number
+     * @return The number currently stored in the contract
+     */
+    function retrieve() external view returns (uint256) {
+        return number;
+    }
+
+    /**
+     * @notice Transfers ownership of the contract to a new address
+     * @param newOwner The address of the new owner
+     */
+    function transferOwnership(address newOwner) external onlyOwner {
+        if (newOwner == address(0)) revert InvalidOwnerAddress();
+
+        address oldOwner = owner;
+        owner = newOwner;
+
+        emit OwnershipTransferred(oldOwner, newOwner);
+    }
+}

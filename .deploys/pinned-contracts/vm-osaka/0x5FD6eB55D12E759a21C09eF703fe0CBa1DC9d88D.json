@@ -1,0 +1,32 @@
+{
+  "name": "HashHelper",
+  "address": "0x5FD6eB55D12E759a21C09eF703fe0CBa1DC9d88D",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "secret",
+          "type": "string"
+        }
+      ],
+      "name": "getPackedHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "filePath": "Remix/.git/MyContracts/HashHelper.sol",
+  "pinnedAt": 1773776603172
+}

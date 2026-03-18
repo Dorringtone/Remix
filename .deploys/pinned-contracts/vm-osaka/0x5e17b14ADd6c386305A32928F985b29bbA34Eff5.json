@@ -1,0 +1,52 @@
+{
+  "name": "TimezoneHelper",
+  "address": "0x5e17b14ADd6c386305A32928F985b29bbA34Eff5",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "year",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "month",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "day",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "hour",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minute",
+          "type": "uint256"
+        },
+        {
+          "internalType": "int256",
+          "name": "utcOffsetHours",
+          "type": "int256"
+        }
+      ],
+      "name": "toTimestampWithOffset",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "filePath": "Remix/.git/MyContracts/TimeHelper.sol",
+  "pinnedAt": 1773779371811
+}

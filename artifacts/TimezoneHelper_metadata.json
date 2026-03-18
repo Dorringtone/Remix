@@ -1,0 +1,90 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "year",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "month",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "day",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "hour",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "minute",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "utcOffsetHours",
+						"type": "int256"
+					}
+				],
+				"name": "toTimestampWithOffset",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".git/MyContracts/TimeHelper.sol": "TimezoneHelper"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		".git/MyContracts/TimeHelper.sol": {
+			"keccak256": "0x457f050058555d8ec6d0610f198a2372e745b760cc5101a2b18a4b4436fe4e87",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://365d258b6b413781bbcd80ea17b015ebd57bd666e4b1557b65fa5d68098a05c0",
+				"dweb:/ipfs/QmNc5ZKySyR7mKqdKoxPPePikE5BXAcYvJ7wjV2gFLrZ4B"
+			]
+		}
+	},
+	"version": 1
+}

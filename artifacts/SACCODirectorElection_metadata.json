@@ -1,0 +1,655 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldAdmin",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "AdminTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					}
+				],
+				"name": "CandidateDeactivated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "membershipNumber",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					}
+				],
+				"name": "CandidateRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "delegateAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "membershipNumber",
+						"type": "string"
+					}
+				],
+				"name": "DelegateRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "closedAt",
+						"type": "uint256"
+					}
+				],
+				"name": "ElectionClosed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "deadline",
+						"type": "uint256"
+					}
+				],
+				"name": "ElectionOpened",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "delegateAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					}
+				],
+				"name": "VoteCast",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "candidates",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "membershipNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "closeElection",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					}
+				],
+				"name": "deactivateCandidate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "delegates",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "isRegistered",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "membershipNumber",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "electionOpen",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllPositions",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "",
+						"type": "string[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					}
+				],
+				"name": "getCandidate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "membershipNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					}
+				],
+				"name": "getCandidatesByPosition",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					}
+				],
+				"name": "getPositionResults",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "candidateIds",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "names",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "voteCounts",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "bool[]",
+						"name": "activeStatuses",
+						"type": "bool[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "delegateAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					}
+				],
+				"name": "hasDelegateVotedForPosition",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "durationInMinutes",
+						"type": "uint256"
+					}
+				],
+				"name": "openElection",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "membershipNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					}
+				],
+				"name": "registerCandidate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "delegateAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "membershipNumber",
+						"type": "string"
+					}
+				],
+				"name": "registerDelegate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "timeLeft",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "transferAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					}
+				],
+				"name": "vote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "votingDeadline",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					}
+				],
+				"name": "winnerDetails",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "membershipNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					}
+				],
+				"name": "winningCandidate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "winningCandidateId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "A smart contract for SACCO director elections. The admin registers candidates and qualified delegates. Delegates can vote once per position during the active election period.",
+			"kind": "dev",
+			"methods": {
+				"closeElection()": {
+					"details": "Close election manually."
+				},
+				"deactivateCandidate(uint256)": {
+					"details": "Deactivate a candidate before election opens."
+				},
+				"getAllPositions()": {
+					"details": "Returns all known positions in the election."
+				},
+				"getCandidate(uint256)": {
+					"details": "Returns candidate details."
+				},
+				"getCandidatesByPosition(string)": {
+					"details": "Returns all candidate IDs for a given position."
+				},
+				"getPositionResults(string)": {
+					"details": "Returns full results for a specific position."
+				},
+				"hasDelegateVotedForPosition(address,string)": {
+					"details": "Returns whether a delegate has voted for a specific position."
+				},
+				"openElection(uint256)": {
+					"details": "Open the election for a given number of minutes."
+				},
+				"registerCandidate(string,string,string)": {
+					"details": "Register a candidate for a SACCO position. Example positions: Chairperson, Treasurer, Director"
+				},
+				"registerDelegate(address,string,string)": {
+					"details": "Register a qualified delegate who can vote."
+				},
+				"timeLeft()": {
+					"details": "Returns time left in seconds."
+				},
+				"transferAdmin(address)": {
+					"details": "Transfer admin role to another address."
+				},
+				"vote(uint256)": {
+					"details": "Cast one vote for one candidate in a given position. A delegate can vote only once per position."
+				},
+				"winnerDetails(string)": {
+					"details": "Returns winner details for a given position."
+				},
+				"winningCandidate(string)": {
+					"details": "Returns the winning candidate ID for a given position. Can only be called after election closes or deadline passes."
+				}
+			},
+			"title": "SACCODirectorElection",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".git/MyContracts/SACCODirectorElection.sol": "SACCODirectorElection"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		".git/MyContracts/SACCODirectorElection.sol": {
+			"keccak256": "0x54460ccb871a47c60e34f3579984a07729a013c9838df70dfb004a61d61df503",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://473ce000002c78041a5790b041b5498ebd2d1dbc916898f3fc312428f85ac394",
+				"dweb:/ipfs/QmTnZTk2pBWuhnKuVTLpKpDcedfXsCdxiddAT7RJUJVD4j"
+			]
+		}
+	},
+	"version": 1
+}
