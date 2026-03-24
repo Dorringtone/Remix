@@ -1,6 +1,6 @@
 {
   "name": "KenyaProcurementTransparency",
-  "address": "0x93f8dddd876c7dBE3323723500e83E202A7C96CC",
+  "address": "0x5A86858aA3b595FD6663c2296741eF4cd8BC4d01",
   "abi": [
     {
       "inputs": [],
@@ -152,6 +152,12 @@
           "internalType": "address",
           "name": "bidder",
           "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
         }
       ],
       "name": "BidderRegistered",
@@ -336,6 +342,11 @@
           "internalType": "address",
           "name": "_bidder",
           "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
         }
       ],
       "name": "registerBidder",
@@ -524,6 +535,25 @@
     {
       "inputs": [
         {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "bidderDescriptions",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
@@ -594,12 +624,59 @@
     },
     {
       "inputs": [],
+      "name": "getAllRegisteredBidders",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "indexes",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "address[]",
+          "name": "bidderAddresses",
+          "type": "address[]"
+        },
+        {
+          "internalType": "string[]",
+          "name": "descriptions",
+          "type": "string[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "getBidderCount",
       "outputs": [
         {
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_bidder",
+          "type": "address"
+        }
+      ],
+      "name": "getBidderProfile",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isRegistered",
+          "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
         }
       ],
       "stateMutability": "view",
@@ -897,5 +974,5 @@
     }
   ],
   "filePath": "Remix/.git/MyContracts/KenyaProcurementTransparency.sol",
-  "pinnedAt": 1773782573213
+  "pinnedAt": 1773802382707
 }
